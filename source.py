@@ -1,6 +1,7 @@
 import yfinance as yf
 import pandas as pd
-import sqlite3
+from sqlalchemy import create_engine
+import os
 
 print("Iniciando extração de dados...")
 # Ativos atualizados com o sufixo da bolsa brasileira (.SA)
@@ -65,11 +66,17 @@ df_fundamentos = pd.DataFrame(lista_fundamentos)
 
 # CARGA (Load)
 
-print("Carregando dados no SQLite...")
-conexao = sqlite3.connect('banco_financeiro.db')
+print("Carregando dados no PostgreSQL (Supabase)...")
 
-df_tratado.to_sql('historico_ativos', conexao, if_exists='replace', index=False)
-df_fundamentos.to_sql('fundamentos_ativos', conexao, if_exists='replace', index=False)
+# Substitua pelas suas credenciais fornecidas no painel do Supabase
+# Formato: postgresql://usuario:senha@host:porta/nome_do_banco
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-conexao.close()
-print("Pipeline ETL finalizado com sucesso! Dados atualizados.")
+# Cria o motor de conexão
+engine = create_engine(DATABASE_URL)
+
+# Salva as tabelas na nuvem
+df_tratado.to_sql('historico_ativos', engine, if_exists='replace', index=False)
+df_fundamentos.to_sql('fundamentos_ativos', engine, if_exists='replace', index=False)
+
+print("Pipeline ETL finalizado com sucesso! Tabelas atualizadas na nuvem.")
