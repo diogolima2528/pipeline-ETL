@@ -1,0 +1,41 @@
+name: Pipeline ETL Financeiro Automatica
+
+on:
+  schedule:
+    # Roda de segunda a sexta às 21:00 UTC (18:00 no horário de Brasília, após fechamento da B3)
+    - cron: '0 21 * * 1-5'
+  
+  workflow_dispatch: 
+
+permissions:
+  contents: write
+
+jobs:
+  etl-run:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Acessar arquivos do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar bibliotecas
+        run: |
+          python -m pip install --upgrade pip
+          pip install yfinance pandas
+
+      - name: Executar Pipeline ETL (Extração, Transformação e Carga)
+        run: python source.py
+
+      - name: Salvar o banco de dados atualizado de volta no repositório
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add banco_financeiro.db
+          # O "|| echo" evita que a automação trave se o banco de dados não sofrer nenhuma alteração no dia
+          git commit -m "Atualizando banco de dados financeiro - ETL Diario" || echo "Sem mudancas hoje"
+          git push
