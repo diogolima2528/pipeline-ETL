@@ -43,7 +43,7 @@ df_bruto = pd.concat(dados_historico, ignore_index=True)
 df_tratado = df_bruto.copy()
 
 df_tratado.columns = [col.lower().replace(' ', '_') for col in df_tratado.columns]
-df_tratado['date'] = pd.to_datetime(df_tratado['date'], utc=True).dt.strftime('%d/%m/%Y')
+df_tratado['date'] = pd.to_datetime(df_tratado['date'], utc=True).dt.date
 
 dicionario_nomes = {
     'date': 'data', 'ticker': 'ativo', 'open': 'abertura',
