@@ -1,6 +1,6 @@
 # 📈 Pipeline ETL Financeiro End-to-End & Dashboard BI (B3)
 
-Um projeto completo de dados que extrai, transforma, armazena na nuvem e visualiza dados de mercado e fundamentos contábeis de ativos da bolsa brasileira (B3). O projeto utiliza Python e Pandas para o processamento, carrega os dados em um banco PostgreSQL no Supabase, e consome essas informações em um Dashboard profissional no Power BI, operando de forma 100% autônoma via GitHub Actions.
+Um projeto de dados que extrai, transforma, armazena na nuvem e visualiza dados de mercado e fundamentos contábeis de ativos da bolsa brasileira (B3). O projeto utiliza Python e Pandas para o processamento, carrega os dados em um banco PostgreSQL no Supabase, e consome essas informações em um Dashboard profissional no Power BI, operando de forma 100% autônoma via GitHub Actions.
 
 ## 🛠️ Arquitetura e Tecnologias
 
