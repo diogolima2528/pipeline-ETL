@@ -5,7 +5,7 @@ import os
 
 print("Iniciando extração de dados...")
 # Ativos atualizados com o sufixo da bolsa brasileira (.SA)
-ativos = ['ITUB4.SA', 'TOTS3.SA', 'WEGE3.SA', 'B3SA3.SA']
+ativos = ['B3SA3.SA', 'ITUB4.SA', 'TOTS3.SA', 'WEGE3.SA', 'VALE3.SA', 'BBDC4.SA', 'BPAC11.SA', 'ITSA4.SA', 'PSSA3.SA', 'EGIE3.SA']
 
 dados_historico = []
 lista_fundamentos = []
@@ -15,7 +15,7 @@ for ativo in ativos:
 
     # EXTRAÇÃO 1: Histórico de Cotações
     
-    df_temp = acao.history(start="2026-01-01")
+    df_temp = acao.history(start="2024-01-01")
     df_temp = df_temp.reset_index()
     df_temp['ticker'] = ativo
     dados_historico.append(df_temp)
