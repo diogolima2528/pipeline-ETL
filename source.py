@@ -68,8 +68,6 @@ df_fundamentos = pd.DataFrame(lista_fundamentos)
 
 print("Carregando dados no PostgreSQL (Supabase)...")
 
-# Substitua pelas suas credenciais fornecidas no painel do Supabase
-# Formato: postgresql://usuario:senha@host:porta/nome_do_banco
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 # Cria o motor de conexão
