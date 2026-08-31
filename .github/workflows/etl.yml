@@ -3,7 +3,7 @@ name: Pipeline ETL Financeiro Automatica
 on:
   schedule:
     # Roda de segunda a sexta às 21:00 UTC (18:00 no horário de Brasília, após fechamento da B3)
-    - cron: '0 21 * * 1-5'
+    - cron: '17 21 * * 1-5'
   
   workflow_dispatch: 
 
