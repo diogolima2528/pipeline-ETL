@@ -3,7 +3,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 import os
 
-print("Iniciando extração de dados...")
+print("Etapa de extração de dados")
 # Ativos atualizados com o sufixo da bolsa brasileira (.SA)
 ativos = ['B3SA3.SA', 'ITUB4.SA', 'TOTS3.SA', 'WEGE3.SA', 'VALE3.SA', 'BBDC4.SA', 'BPAC11.SA', 'ITSA4.SA', 'PSSA3.SA', 'EGIE3.SA']
 
@@ -37,7 +37,7 @@ for ativo in ativos:
     
 # TRANSFORMAÇÃO
 
-print("Realizando tratamento e cálculos...")
+print("Etapa de tratamento de dados")
 
 df_bruto = pd.concat(dados_historico, ignore_index=True)
 df_tratado = df_bruto.copy()
@@ -66,7 +66,7 @@ df_fundamentos = pd.DataFrame(lista_fundamentos)
 
 # CARGA (Load)
 
-print("Carregando dados no PostgreSQL (Supabase)...")
+print("Carregando dados no PostgreSQL (Supabase)")
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
